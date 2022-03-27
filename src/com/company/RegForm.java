@@ -25,14 +25,13 @@ public class RegForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pswrdField1.getText().equals(pswrdField2.getText())){
-                    if (AuthForm.isUserExist(
+                    if (Main.isUserExist(
                             loginField.getText(),
-                            pswrdField1.getText(),
-                            Main.path)){
+                            pswrdField1.getText())){
                         JOptionPane.showMessageDialog(null, "пользователь существует");
                     }
                     else {
-                        addNewUser(loginField.getText(),pswrdField1.getText(), Main.path);
+                        Main.addNewUser(loginField.getText(),pswrdField1.getText());
                         JOptionPane.showMessageDialog(null, "пользователь добавлен");
                     }
                 }
@@ -42,11 +41,5 @@ public class RegForm extends JFrame {
             }
         });
     }
-    static void addNewUser(String login, String pswrd, Path path){
-        try {
-            Files.writeString(path, login + " " + pswrd + "\n", StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
